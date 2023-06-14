@@ -1,0 +1,32 @@
+[
+    {
+        "id" : 1 ,
+        "show": false,
+        "title" : "title1",
+        "link" : "https:fff1" ,
+        "author" : "Ali",
+        "email" : "<test@test.com>",
+        "content" : "Dear 1Students E-mail is a copy of a system message that has been sent in Stud.IP" ,
+        "goto": "https://www.goto.com/"
+    },
+    {
+        "id" : 2 ,
+        "show": false,
+        "title" : "title2",
+        "link" : "https:fff2" ,
+        "author" : "Ali2",
+        "email" : "<test@test.com>",
+        "content" : "Dear 2Students E-mail is a copy of a system message that has been sent in Stud.IP" ,
+        "goto": "https://www.goto.com/"
+    },
+    {
+        "id" : 3 ,
+        "show": false,
+        "title" : "title3",
+        "link" : "https:fff3" ,
+        "author" : "Ali3",
+        "email" : "<test@test.com>",
+        "content" : "Dear 3Students E-mail is a copy of a system message that has been sent in Stud.IP" ,
+        "goto": "https://www.goto.com/"
+    }
+]

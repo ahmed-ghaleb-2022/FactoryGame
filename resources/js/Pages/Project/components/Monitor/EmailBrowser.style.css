@@ -1,0 +1,89 @@
+.ok-button{
+    border: none ;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #2491CA;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.cancel-button{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: #DB3332;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+/*///////////*/
+
+.google-outter-container{
+    border: 2px solid rgb(217, 217, 217);
+    width: 500px;
+    margin: 0 auto;
+    padding: 41px 20px;
+    border-radius: 4px;
+}
+.google-inner-container{
+    width: 350px;
+    margin: 0 auto;
+}
+.Google-logo{
+    width: 150px;
+    margin: 20px auto;  
+}
+.Sign-in-title{
+    font-size: 28px;
+}
+.Sign-in-sub-title{
+    font-size: 19px;
+    margin-bottom: 30px;
+}
+
+.input-email{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+.input-password{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+.forget-email{
+    margin-top: 10px;
+    text-align: start;
+    font-size: 18px;
+    color: #1A74EA;
+    margin-bottom: 30px;
+}
+.note-guest-mode{
+    text-align: start;
+}
+.learn-more{
+    color: #1A74EA;
+}
+
+
+.google-last-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.create-account{
+    color: #1A74EA;
+    font-size: 18px;
+    font-weight: 600;   
+}
+.Sign-in-button{
+    background-color: #1A74EA ;
+    color: white;
+    font-size: 20px;
+    padding: 8px 15px;
+    border-radius: 10px;
+}

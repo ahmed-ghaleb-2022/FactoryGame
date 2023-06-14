@@ -1,0 +1,11 @@
+.my-note-book-list-item {
+    background: #b6b4b461;
+    padding: 6px 5px;
+    border-bottom: 2px solid #cacaca;
+    transition: all 0.5s;
+    overflow: hidden;
+}
+.my-note-book-list-item:hover {
+    background: #f9f8f889;
+
+}

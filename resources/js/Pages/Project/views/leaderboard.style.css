@@ -1,0 +1,10 @@
+.leaderboard-container {
+    width: 80%;
+    margin: 30px auto;
+}
+.leaderboard-heading {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
