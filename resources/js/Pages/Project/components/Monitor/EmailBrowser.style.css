@@ -1,3 +1,110 @@
+
+/* Monitor */
+.Monitor{
+    height: 100vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    text-align: center;
+
+}
+
+.goto-link{
+    color : blue;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.browser-page{
+    width: 80%;
+    height: 70%;
+    border-radius: 5px;
+    background-color: #A2CBDD;
+    transition: all 1s ease-in-out;
+    bottom: 200px;    
+    position: absolute;
+    z-index: 1;
+    
+}
+
+@media (max-width: 639px){
+    .browser-page{
+        width: 85%;
+        
+    }
+}
+
+
+.hide-monitor{
+    bottom: -2000px;
+    
+}
+
+.browser-top-bar{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A2CBDD;
+    
+}
+.browser-logo{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+.close-btn{
+    padding: 7px 13px;
+    border-top-right-radius: 5px;
+    color: #fff;
+    font-size: 19px;
+    background-color: #DC2626;
+}
+.close-btn:hover{
+    background-color: #c92323;
+}
+.browser-top-title{
+    font-size: 20px;
+    color: #222;
+    font-weight: 600;
+}
+.browser-link-section{
+    background-color: #EAEDF4;
+    padding: 6px 0px;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 6px;
+}
+.browser-link-input{
+    background-color: #fff;
+    width: 80%;
+    border-radius: 5px;
+    padding: 5px 5px;
+    text-align: start;
+}
+.browser-content-section{
+    background-color: #fff;
+    
+    height: 85%;
+    padding: 20px;
+    text-align: start;
+    overflow-y: scroll;
+}
+
+
+
+
+
+/* Monitor */
+
+
+
+
+
+
 .ok-button{
     border: none ;
     border-radius: 10px;
@@ -24,9 +131,9 @@
 
 .google-outter-container{
     border: 2px solid rgb(217, 217, 217);
-    width: 500px;
+    width: 400px;
     margin: 0 auto;
-    padding: 41px 20px;
+    padding: 21px 10px;
     border-radius: 4px;
 }
 .google-inner-container{
@@ -87,3 +194,58 @@
     padding: 8px 15px;
     border-radius: 10px;
 }
+
+
+
+/** Breakpoints:
+  sm: min-width: 640px;
+  md: min-width: 768px;
+  lg: min-width: 1024px;
+  xl: min-width: 1280px;
+  2xl: min-width: 1536px;
+**/
+
+
+@media (min-width: 640px) {
+    .browser-page{
+        width: 60%;
+        height: 70%;
+        border-radius: 5px;
+        background-color: #A2CBDD;
+        transition: all 1s ease-in-out;
+        bottom: 150px;
+        position: absolute;
+        z-index: 1;
+        
+    }
+   
+  }
+  
+  @media (min-width: 768px) {
+    .browser-page{
+        width: 85%;
+        
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .browser-page{
+        width: 80%;
+        
+        
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .browser-page{
+        width: 50%;
+        height: 70%;
+        border-radius: 5px;
+        background-color: #A2CBDD;
+        transition: all 1s ease-in-out;
+        bottom: 150px;
+        position: absolute;
+        z-index: 1;
+        
+    }
+  }

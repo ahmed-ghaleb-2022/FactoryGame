@@ -120,7 +120,8 @@ class EmailsController extends Controller
 
         DB::table('email_user')->insert([
                 'email_id' =>  $request->randomEmail,
-                'user_id' => $user
+                'user_id' => $user,
+                'dateNow' =>  $request->dateNow,
             ]);
 
         DB::table('users')

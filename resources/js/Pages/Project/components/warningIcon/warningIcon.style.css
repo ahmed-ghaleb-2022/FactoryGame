@@ -1,0 +1,51 @@
+
+.warning-icon{
+    position: absolute;
+    right: 120px;
+    font-size: 50px;
+    text-shadow: 8px 7px #4d262600;
+    color: #b5b3b34f;
+}
+
+@media (max-width: 639px){
+    .warning-icon{
+        right: 80px;
+        font-size: 45px;
+    }
+}
+
+.not-clickable{
+    cursor: default;
+}
+.hide-icon{
+    display: none;
+}
+
+.warning-icon.disabled {
+    color: #b5b3b34f;
+}
+.warning-icon.safe {
+    color: #03c019;
+    animation: Sparkle 5s linear infinite;
+}
+.warning-icon.unknown {
+    color: #c09d03;
+    animation: Sparkle 5s linear infinite;
+}
+
+.warning-icon.not-safe {
+    color: #d71006e7;
+    animation: Sparkle 4s linear infinite;
+}
+
+
+@keyframes Sparkle {
+    0%, 100% {
+        text-shadow: 8px 7px #4d26261c;
+        
+    }
+    50% {
+        color: #abababb8;
+        text-shadow: 8px 7px #4d262600;
+    }
+  }

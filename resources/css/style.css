@@ -2,8 +2,13 @@
     box-sizing: border-box !important;
 }
 
+.game-title{
+    color:  white !important;
+    font-size: 30px;
+}
+.game-sub-title{
 
-
+}
 .backgroud-page{
     background-color: #FFFBFF;
     background-image:
@@ -14,6 +19,12 @@
     background-size: 70%;
     overflow-y: hidden;
     
+}
+
+@media (max-width: 639px){
+    .backgroud-page{
+        background-size: 90%;
+    }
 }
 
 
@@ -54,53 +65,14 @@
     }
   }
 
-
-
-.warning-icon{
-    position: fixed;
-    top: 80px;
-    right: 50px;
-    font-size: 70px;
-    text-shadow: 8px 7px #4d262600;
-    color: #b5b3b34f;
-}
-
-
-.not-clickable{
-    cursor: default;
-}
-.hide-icon{
-    display: none;
-}
-
-.warning-icon.disabled {
-    color: #b5b3b34f;
-}
-.warning-icon.safe {
-    color: #03c019;
-    animation: Sparkle 5s linear infinite;
-}
-.warning-icon.unknown {
-    color: #c09d03;
-    animation: Sparkle 5s linear infinite;
-}
-
-.warning-icon.not-safe {
-    color: #d71006e7;
-    animation: Sparkle 4s linear infinite;
-}
-
-
-@keyframes Sparkle {
-    0%, 100% {
-        text-shadow: 8px 7px #4d26261c;
-        
+  @media (max-width: 639px){
+    .reader-icon{
+        width: 100px;
     }
-    50% {
-        color: #abababb8;
-        text-shadow: 8px 7px #4d262600;
-    }
+
   }
+
+
 
 
   .lists{
@@ -167,96 +139,7 @@
 
 
 
-/* Monitor */
-.Monitor{
-    height: 100vh;
-    display: flex; 
-    align-items: center;
-    justify-content: center; 
-    text-align: center;
 
-}
-
-.goto-link{
-    color : blue;
-}
-
-.browser-page{
-    width: 60%;
-    height: 70%;
-    border-radius: 5px;
-    background-color: #A2CBDD;
-    transition: all 1s ease-in-out;
-    bottom: 150px;
-    position: absolute;
-    z-index: 1;
-    
-}
-
-.hide-monitor{
-    bottom: -2000px;
-    
-}
-
-.browser-top-bar{
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #A2CBDD;
-    
-}
-.browser-logo{
-    width: 25px;
-    height: 25px;
-    margin-left: 10px;
-}
-.close-btn{
-    padding: 7px 13px;
-    border-top-right-radius: 5px;
-    color: #fff;
-    font-size: 19px;
-    background-color: #DC2626;
-}
-.close-btn:hover{
-    background-color: #c92323;
-}
-.browser-top-title{
-    font-size: 20px;
-    color: #222;
-    font-weight: 600;
-}
-.browser-link-section{
-    background-color: #EAEDF4;
-    padding: 6px 0px;
-    min-height: 30px;
-    display: flex;
-    justify-content: center;
-    margin: 0px 6px;
-    margin-top: 6px;
-}
-.browser-link-input{
-    background-color: #fff;
-    width: 80%;
-    border-radius: 5px;
-    padding: 5px 5px;
-    text-align: start;
-}
-.browser-content-section{
-    background-color: #fff;
-    margin: 0px 6px;
-    height: 85%;
-    padding: 20px;
-    text-align: start;
-    overflow-y: scroll;
-}
-
-
-
-
-
-/* Monitor */
 
 
 
@@ -322,3 +205,13 @@ transition: all 0.5s ease-in-out;
 .display-linebreak {
     white-space: pre-line;
   }
+
+
+  /* End of show-more-details */
+  /* the Balance */
+  .the-balance{
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(15, 132, 250);
+    font-family: 'IBM Plex Sans', sans-serif;
+    }      

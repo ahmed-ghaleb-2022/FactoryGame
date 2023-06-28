@@ -1,5 +1,7 @@
 import { router } from "@inertiajs/react";
 
+import './warningIcon.style.css';
+
 const WarningIcon = ({ warningIcon, setWarningIcon, currentMonitor }) => {
     const { show, clickable, safty } = warningIcon;
 

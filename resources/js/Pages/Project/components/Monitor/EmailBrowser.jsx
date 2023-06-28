@@ -3,7 +3,7 @@ import bg from'../../../../../images/python.png';
 import './EmailBrowser.style.css';
 import { router } from '@inertiajs/react'
 
-const EmailBrowser = ({value , showOrHide , closeWindow, openGoogleHandler}) => {
+const EmailBrowser = ({value , showOrHide , closeWindow, openGoogleHandler,user}) => {
     
     const [showMoreDetails , setShowMoreDetails] = useState(false);
     const toggleShowMoreDetails = ()=>{
@@ -27,7 +27,7 @@ const EmailBrowser = ({value , showOrHide , closeWindow, openGoogleHandler}) => 
 
     return ( <>
     
-    <div className={`browser-page ${showOrHide === 'email' ? '': 'hide-monitor'}`}>
+    <div className={`browser-page flex flex-col p-2 ${showOrHide === 'email' ? '': 'hide-monitor'}`}>
         <div className="browser-top-bar ">
             <div className='browser-logo'><img src={bg} alt="" /></div>
             <div className="browser-top-title">{value.title}</div>
@@ -37,29 +37,39 @@ const EmailBrowser = ({value , showOrHide , closeWindow, openGoogleHandler}) => 
             
         </div>
         
-        <div className="browser-content-section ">
+        <div className="browser-content-section flex-grow ">
 
             <div>
-                <span className='email-author'>{value.author}</span> <span> {value.email} </span>
+                <span className='email-author'>{value.author}</span> <span> {"<"}{value.email}{">"}  </span>
             </div>
 
             <div className='relative'>
                 <span className='to-me'>to me</span><button className='show-more-details-btn' onClick={toggleShowMoreDetails}><i className="fa-solid fa-caret-down"></i></button>
                 <div className={` ${showMoreDetails ? 'show' : 'hidden'} absolute show-more-details`} >
-                <p> from:	LinkedIn Job Alerts  </p>
-                <p> to:	Ahmed Tareq Ali Ghaleb </p>
-                <p> date:	Apr 22, 2023, 2:51 PM </p>
-                <p> mailed-by:	bounce.linkedin.com </p>
-                <p> signed-by:	linkedin.com </p>
+                <p> from:	{value.mailedfrom}  </p>
+                <p> to:	{user.name} </p>
+                <p> date:	{value.dateNow} </p>
+                <p> mailed-by:	{value.mailedby} </p>
+                <p> signed-by:	{value.signedby} </p>
                 <p> security:	Standard encryption (TLS) Learn more </p>
                 </div>
             </div>
             
             <div className='display-linebreak'>
                 {value.content}
-                <span className='goto-link'>{value.goto}</span>
+                
+                {
+                    value.goto && (
+                        <span className='goto-link' onClick={openGoogleHandler}>{value.goto}</span>
+                    )
+                }
+                
                 <br />
-                <button onClick={openGoogleHandler}>go to google</button>
+                <br />
+                {value.conclusion}
+
+
+
                 {
                     value.response !== null ? '':(
                     <div className=' text-center'>

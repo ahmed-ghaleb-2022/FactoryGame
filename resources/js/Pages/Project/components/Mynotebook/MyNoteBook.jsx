@@ -4,7 +4,7 @@ import MyNoteBooklistItem from './MyNoteBookListItem/MyNoteBooklistItem';
 
 const MyNoteBook = ({companies}) => {
 
-    const [isNoteBookOpen , setIsNoteBookOpen] = useState(true);
+    const [isNoteBookOpen , setIsNoteBookOpen] = useState(false);
 
     const toggleMyNoteBook = ()=>{
         setIsNoteBookOpen(!isNoteBookOpen);

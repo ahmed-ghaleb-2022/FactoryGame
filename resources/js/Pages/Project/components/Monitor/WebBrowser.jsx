@@ -18,14 +18,16 @@ const WebBrowser = ({value , showOrHide , closeWindow, backToEmail}) => {
     
     return ( <>
     
-    <div className={`browser-page ${showOrHide === 'web' ? '': 'hide-monitor'}`}>
+    <div className={`browser-page flex flex-col p-2 ${showOrHide === 'web' ? '': 'hide-monitor'}`}>
         <div className="browser-top-bar ">
             <div className='browser-logo'><img src={bg} alt="" /></div>
             <div className="browser-top-title">{value.title}</div>
             <button className="close-btn" onClick={closeWindow}>X</button>
         </div>
-        <div className="browser-link-section">
-            <button onClick={backToEmail}>back</button>
+        <div className="browser-link-section relative">
+            <button className="absolute left-2 top-auto rounded-sm hover:bg-slate-300 p-1" onClick={backToEmail}>
+            <i className="fa-solid fa-arrow-left-long"></i>
+            </button>
             <div className="browser-link-input">
                 {value.link}
             </div>

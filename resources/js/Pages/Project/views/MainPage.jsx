@@ -10,10 +10,12 @@ import MyNoteBook from "../components/Mynotebook/MyNoteBook";
 import "../../../../css/style.css";
 import { router } from "@inertiajs/react";
 import Guidance from "../components/Monitor/Guidance/Guidance.component";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { data } from "autoprefixer";
 
 //import Oemails from '../components/data/emails';
 
-const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, companies }) => {
+const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, companies }) => {
     const [intervalId, setIntervalId] = useState(null);
     const AllEmailsId = listOfAllEmailsId;
     const EmailsUserAlreadyHas = listOfEmailsId;
@@ -32,9 +34,15 @@ const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, compani
 
         let countEmailsIhave = EmailsUserAlreadyHas.length + 1;
         console.log("add", countEmailsIhave);
+
+        const currentDate = new Date();
+        // Format the date
+        const dateNow = formatDate(currentDate);
+        
         router.post("/game/addNew", {
             randomEmail,
             countEmailsIhave,
+            dateNow
         });
 
         EmailsUserAlreadyHas.push(randomEmail);
@@ -44,6 +52,7 @@ const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, compani
         // Start the interval when the component mounts
         const id = setInterval(() => {
             getRandomEmail();
+    
         }, 3000);
 
         // Store the interval ID in state
@@ -58,6 +67,25 @@ const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, compani
         clearInterval(intervalId);
         console.log("Interval stopped");
     };
+
+
+    const formatDate = (date) => {
+        const months = [
+          'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+      
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+        const formattedDate = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+        const formattedTime = hours % 12 + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
+      
+        return formattedDate + ', ' + formattedTime;
+      }
+      
+     
 
     /************************* Variables ********************************/
 
@@ -135,8 +163,12 @@ const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, compani
 
     return (
         <>
-
-            <Navbar  balance={balance} />
+            <AuthenticatedLayout  
+                warningIcon={warningIcon}
+                setWarningIcon={setWarningIcon}
+                currentMonitor={currentMonitor} 
+                user={auth.user} 
+                balance={balance}>
 
             <div className="backgroud-page relative">
                 <div className="Main-Content flex">
@@ -151,12 +183,14 @@ const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, compani
                             showOrHide={currentBrowser}
                             closeWindow={closeWindow}
                             value={currentMonitor}
+                            user={auth.user} 
                         />
                         <WebBrowser
                             backToEmail={backToEmail}
                             showOrHide={currentBrowser}
                             closeWindow={closeWindow}
                             value={currentMonitor}
+                            user={auth.user} 
                         />
                         <Guidance
                             showOrHide={currentBrowser}
@@ -169,17 +203,17 @@ const MainPage = ({  Emails, listOfAllEmailsId, listOfEmailsId, balance, compani
                     </div>
                     
                     
-                    <WarningIcon
+                    {/* <WarningIcon
                         warningIcon={warningIcon}
                         setWarningIcon={setWarningIcon}
                         currentMonitor={currentMonitor}
-                    />
+                    /> */}
 
 
                     <MyNoteBook companies={companies} />
                 </div>
             </div>
-           
+            </AuthenticatedLayout>
         </>
     );
 };

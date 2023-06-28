@@ -4,19 +4,19 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
-
-export default function Authenticated({ balance, user, header, children }) {
+import WarningIcon from '../Pages/Project/components/warningIcon/warningIcon.component';
+export default function Authenticated({ balance, user, header, children , warningIcon, setWarningIcon , currentMonitor }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <nav className="bg-yellow-400 border-b border-gray-100">
+            <nav className=" border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
+                    <div className="flex justify-between relative h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                <Link href={route('game.index')}>
+                                    <ApplicationLogo className="block h-1 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
 
@@ -31,7 +31,11 @@ export default function Authenticated({ balance, user, header, children }) {
                             
                         </div>
                         <div className='flex items-center'>
-                            <h2>{balance}</h2></div> 
+                            <h2 className='the-balance'>${balance}</h2>
+                        </div> 
+                        <WarningIcon  warningIcon={warningIcon}
+                        setWarningIcon={setWarningIcon}
+                        currentMonitor={currentMonitor}/>
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <div className="ml-3 relative">
                                 <Dropdown>
@@ -60,7 +64,6 @@ export default function Authenticated({ balance, user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -95,13 +98,17 @@ export default function Authenticated({ balance, user, header, children }) {
                     </div>
                 </div>
 
-                {/* <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
+                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
+                        <ResponsiveNavLink href={route('game.index')} active={route().current('game.index')}>
+                            Game
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('leaderboard.show')} active={route().current('leaderboard.show')}>
+                            Leaderboard
+                        </ResponsiveNavLink>
+                       
                     </div>
-
+                    
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
                             <div className="font-medium text-base text-gray-800">{user.name}</div>
@@ -109,13 +116,13 @@ export default function Authenticated({ balance, user, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                            
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </nav>
 
 
