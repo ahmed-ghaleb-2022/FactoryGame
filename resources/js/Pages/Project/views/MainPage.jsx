@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import WebBrowser from "../components/Monitor/WebBrowser";
 import EmailBrowser from "../components/Monitor/EmailBrowser";
-import WarningIcon from "../components/warningIcon/warningIcon.component";
-import Navbar from "../components/Navbar/Navbar";
 import readerIcon from "../../../../images/readericon.png";
-import factoryImg from "../../../../images/factory.gif";
 import SidetabContainer from "../components/Sidetabs/Sidetabs.container";
 import MyNoteBook from "../components/Mynotebook/MyNoteBook";
 import "../../../../css/style.css";
@@ -12,6 +9,7 @@ import { router } from "@inertiajs/react";
 import Guidance from "../components/Monitor/Guidance/Guidance.component";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { data } from "autoprefixer";
+import { Head } from '@inertiajs/react';
 
 //import Oemails from '../components/data/emails';
 
@@ -163,6 +161,7 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
 
     return (
         <>
+        <Head title="Dashboard" />
             <AuthenticatedLayout  
                 warningIcon={warningIcon}
                 setWarningIcon={setWarningIcon}

@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, Head } from "@inertiajs/react";
 import "./leaderboard.style.css";
 
 const LeaderBoard = ({ users }) => {
@@ -40,6 +40,8 @@ const back =()=> {
     window.history.back();
   }
     return (
+        <>
+        <Head title="LeaderBoard" />
         <div className="leaderboard-page-container">
             <div className='gradient' />
             <Link onClick={back} className="back-btn">
@@ -102,6 +104,7 @@ const back =()=> {
         </div>
 
         </div>
+        </>
     );
 };
 
