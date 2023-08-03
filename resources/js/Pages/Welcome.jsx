@@ -44,7 +44,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
                     <div className="flex justify-center flex-col items-center">
                         <h1 className='text-7xl mb-4 font-semibold text-center game-main-title orange_gradient'>Factory Game</h1>
-                        <p className='text-2xl  text-black'>A serious game of cybersecurity</p>
+                        <p className='text-2xl text-center text-black'>A serious game of cybersecurity</p>
                         {/* <svg
                             viewBox="0 0 62 65"
                             fill="none"

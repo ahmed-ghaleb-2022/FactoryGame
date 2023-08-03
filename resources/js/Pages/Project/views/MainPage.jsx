@@ -10,6 +10,7 @@ import Guidance from "../components/Monitor/Guidance/Guidance.component";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { data } from "autoprefixer";
 import { Head } from '@inertiajs/react';
+import FeedBack from "../components/Feedback/Feedback";
 
 //import Oemails from '../components/data/emails';
 
@@ -50,8 +51,8 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
         // Start the interval when the component mounts
         const id = setInterval(() => {
             getRandomEmail();
-    
-        }, 3000);
+            //console.log('I have ', EmailsUserAlreadyHas );
+        }, 120000);
 
         // Store the interval ID in state
         setIntervalId(id);
@@ -88,9 +89,9 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
     /************************* Variables ********************************/
 
     const [allEmails, setAllEmails] = useState(Emails);
-    const [currentBrowser, setCurrentBrowser] = useState("none"); // email web guide ''
+    const [currentBrowser, setCurrentBrowser] = useState("guide"); // email web guide ''
     const [currentMonitor, setCurrentMonitor] = useState({
-        id: 1,
+        email_id: 1,
         show: false,
         title: "title",
         link: "https://",
@@ -123,11 +124,14 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
         });
         setCurrentMonitor(
             ...allEmails.filter((email) => email.email_id === item.email_id)
-        );
+            );
+
         setCurrentBrowser(value);
         router.post("/game/unread", {
             id: item.email_id,
         });
+
+
     };
 
     useEffect(() => {
@@ -148,7 +152,9 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
         setCurrentBrowser("email");
     };
 
+
     const closeWindow = () => {
+
         setCurrentBrowser("none");
         setWarningIcon({
             show: false,
@@ -157,17 +163,33 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
         });
     };
 
-    
+
+
+    const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
+    const [feedbackType, setFeedbackType] = useState(true);
+
+
+    const showFeedBack = (typeofFeedback) => {
+        setFeedbackType(typeofFeedback);
+        setIsFeedbackVisible(true);
+        setTimeout(() => {
+            setIsFeedbackVisible(false);
+        }, 3000); // 3000 milliseconds = 3 seconds
+      };
+
 
     return (
         <>
         <Head title="Dashboard" />
+        {isFeedbackVisible && <FeedBack feedbackType={feedbackType}/>}
+        
             <AuthenticatedLayout  
                 warningIcon={warningIcon}
                 setWarningIcon={setWarningIcon}
                 currentMonitor={currentMonitor} 
                 user={auth.user} 
-                balance={balance}>
+                balance={balance}
+                >
 
             <div className="backgroud-page relative">
                 <div className="Main-Content flex">
@@ -183,6 +205,7 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
                             closeWindow={closeWindow}
                             value={currentMonitor}
                             user={auth.user} 
+                            showFeedBack={showFeedBack}
                         />
                         <WebBrowser
                             backToEmail={backToEmail}
@@ -200,15 +223,6 @@ const MainPage = ({ auth, Emails, listOfAllEmailsId, listOfEmailsId, balance, co
                     <div className="reader-icon" onClick={showGuidanceWindow}>
                         <img src={readerIcon} alt="" />
                     </div>
-                    
-                    
-                    {/* <WarningIcon
-                        warningIcon={warningIcon}
-                        setWarningIcon={setWarningIcon}
-                        currentMonitor={currentMonitor}
-                    /> */}
-
-
                     <MyNoteBook companies={companies} />
                 </div>
             </div>

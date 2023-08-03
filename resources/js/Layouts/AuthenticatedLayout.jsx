@@ -32,6 +32,7 @@ export default function Authenticated({ balance, user, header, children , warnin
                         </div>
                         <div className='flex items-center'>
                             <h2 className='the-balance'>${balance}</h2>
+                            <h2 className='the-balance ms-3'>{currentMonitor.responseTimer}</h2>
                         </div> 
                         <WarningIcon  warningIcon={warningIcon}
                         setWarningIcon={setWarningIcon}

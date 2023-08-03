@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/game/unread', [EmailsController::class, 'unread'])->name('game.unread');
     Route::post('/game/response', [EmailsController::class, 'response'])->name('game.response');
     Route::post('/game/addNew', [EmailsController::class, 'addNew'])->name('game.addNew');
+    //Route::post('/game/updatetime', [EmailsController::class, 'updatetime'])->name('game.updatetime');
     Route::patch('/game', [EmailsController::class, 'update'])->name('game.update');
     Route::delete('/game', [EmailsController::class, 'destroy'])->name('game.destroy');
 });

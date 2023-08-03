@@ -64,6 +64,18 @@ class EmailsController extends Controller
             ->update(['helpUsed' => 1]);
     }
 
+    // public function updatetime(Request $request)
+    // {
+        
+    //     $user = auth()->user()->id;
+    //     DB::table('email_user')
+    //         ->where('email_id', $request->id)
+    //         ->where('user_id', $user)
+    //         ->update(['responseTimer' => $request->time]);
+    // }
+
+
+    
     public function response(Request $request)
     {
         
@@ -71,7 +83,9 @@ class EmailsController extends Controller
         DB::table('email_user')
             ->where('email_id', $request->id)
             ->where('user_id', $user)
-            ->update(['response' => $request->response]);
+            ->update(['response' => $request->response,
+            'responseTime' => now()
+        ]);
 
             $balance = DB::table('users')
             ->where('id', '=', $user)

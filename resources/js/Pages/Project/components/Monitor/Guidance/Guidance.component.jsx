@@ -7,10 +7,13 @@ import { useState } from "react";
 
 const Guidance = ( {showOrHide , closeWindow}) => {
     
-    const allImages = ['https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=',
-    'https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp',
-    'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111-1500x1000.jpg',
-    'https://thumbs.dreamstime.com/b/landscape-nature-mountan-alps-rainbow-76824355.jpg'];
+    const allImages = ['https://i.ibb.co/QH463SZ/1.png',
+    'https://i.ibb.co/ydD75wh/2.png',
+    'https://i.ibb.co/r39Vq43/3.png',
+    'https://i.ibb.co/Y0vtBbd/4.png',
+    'https://i.ibb.co/ZHmN5K6/5.png',
+    'https://i.ibb.co/L91d6Xs/6.png',
+    'https://i.ibb.co/qYgSZZF/7.png'];
 
     const [currentImage , setCurrentImage] = useState(0);
 
