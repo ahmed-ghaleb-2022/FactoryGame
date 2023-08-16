@@ -3,38 +3,7 @@ import "./leaderboard.style.css";
 
 const LeaderBoard = ({ users }) => {
 
-   
-
-const userCounts = {};
-const extractedData = users.reduce((result, item) => {
-  if (!userCounts[item.user_id]) {
-    userCounts[item.user_id] = {
-      isEqualCount: 0,
-      notEqualCount: 0
-    };
-    result.push({
-      user_id: item.user_id,
-      name: item.name,
-      balance: item.balance,
-      emailsIhave: item.emailsIhave,
-      isEqualCount: 0,
-      notEqualCount: 0
-    });
-  }
-
-  if (item.isSafe === item.response) {
-    userCounts[item.user_id].isEqualCount++;
-    result.find(user => user.user_id === item.user_id).isEqualCount++;
-  } else if (item.isSafe !== item.response && item.response !== null ) {
-    userCounts[item.user_id].notEqualCount++;
-    result.find(user => user.user_id === item.user_id).notEqualCount++;
-  }
-
-  return result;
-}, []);
-
-
-const sortedArray = extractedData.sort((a, b) => b.balance - a.balance);
+   users.sort((a, b) => b.balance - a.balance);
 
 const back =()=> {
     window.history.back();
@@ -76,7 +45,7 @@ const back =()=> {
                         </tr>
                     </thead>
                     <tbody>
-                            {sortedArray.map((player, index) =>(
+                            {users.map((player, index) =>(
                         <tr  key={index} className ={`${index % 2 === 0 ? 'bg-white border-b  '  : 'border-b bg-gray-50  '}`}>
                                 
                                 <th
@@ -93,8 +62,8 @@ const back =()=> {
                             </th>
                             <td className="px-6 py-4">$ {player.balance}</td>
                             <td className="px-6 py-4">{player.emailsIhave}</td>
-                            <td className="px-6 py-4">{player.isEqualCount}</td>
-                            <td className="px-6 py-4">{player.notEqualCount}</td>
+                            <td className="px-6 py-4">{player.correctdecisions}</td>
+                            <td className="px-6 py-4">{player.wrongdecisions}</td>
                             
                             </tr>
                             ))}

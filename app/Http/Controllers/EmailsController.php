@@ -35,6 +35,9 @@ class EmailsController extends Controller
         ->value('balance');
 
 
+        $this->calculateEmailsIHave();
+
+
         $companies = DB::table('companies')
         ->get();
         
@@ -43,6 +46,15 @@ class EmailsController extends Controller
     }
 
    
+    public function calculateEmailsIHave(){
+        $user = auth()->user()->id;
+        $emailCount = DB::table('email_user')
+         ->where('user_id', $user)->count();
+        DB::table('users')
+            ->where('id', $user)
+            ->update(['emailsIhave' => $emailCount]);
+        $this->decisions();
+    }
     
     public function unread(Request $request)
     {
@@ -64,18 +76,6 @@ class EmailsController extends Controller
             ->update(['helpUsed' => 1]);
     }
 
-    // public function updatetime(Request $request)
-    // {
-        
-    //     $user = auth()->user()->id;
-    //     DB::table('email_user')
-    //         ->where('email_id', $request->id)
-    //         ->where('user_id', $user)
-    //         ->update(['responseTimer' => $request->time]);
-    // }
-
-
-    
     public function response(Request $request)
     {
         
@@ -83,9 +83,7 @@ class EmailsController extends Controller
         DB::table('email_user')
             ->where('email_id', $request->id)
             ->where('user_id', $user)
-            ->update(['response' => $request->response,
-            'responseTime' => now()
-        ]);
+            ->update(['response' => $request->response]);
 
             $balance = DB::table('users')
             ->where('id', '=', $user)
@@ -120,11 +118,8 @@ class EmailsController extends Controller
                 ->update(['balance' => $balance - 30]);
             }
 
+            $this->decisions();
 
-
-
-
-        
     }
 
     public function addNew(Request $request)
@@ -137,68 +132,41 @@ class EmailsController extends Controller
                 'user_id' => $user,
                 'dateNow' =>  $request->dateNow,
             ]);
+            $this->calculateEmailsIHave();
 
-        DB::table('users')
-            ->where('id', $user)
-            ->update(['emailsIhave' => $request->countEmailsIhave]);
 
         
     }
 
     public function showLeaderboard()
     {
-        
-        // $Emails = DB::table('emails')
-        // ->join('email_user', 'emails.id', '=', 'email_user.email_id')
-        // ->join('users', 'email_user.user_id', '=', 'users.id')
-        // ->get('name');
-
-        // $Emails = DB::table('users')
-        // ->join('email_user', 'users.id', '=', 'email_user.user_id')
-        // ->groupBy('name')
-        // ->get();
-
-        // $userCorrect = DB::table('users')
-        // ->leftJoin('email_user', 'users.id', '=', 'email_user.user_id')
-        // ->leftJoin('emails', 'email_user.email_id', '=', 'emails.id')
-        //     ->select(
-        //         'users.name',
-        //         DB::raw('COUNT(emails.isSafe) AS saffy'),
-        //         DB::raw('COUNT(email_user.response) AS respo')
-        //     )
-        //     ->Where('emails.isSafe', '=', 'email_user.response')
-        //     ->groupBy('users.name')
-        // ->get();
-
-        // $userWrong = DB::table('users')
-        // ->leftJoin('email_user', 'users.id', '=', 'email_user.user_id')
-        // ->leftJoin('emails', 'email_user.email_id', '=', 'emails.id')
-        //     ->select(
-        //         'users.name',
-        //         DB::raw('COUNT(emails.isSafe) AS saffy'),
-        //         DB::raw('COUNT(email_user.response) AS respo')
-        //     )
-        //     ->Where('emails.isSafe', '<>', 'email_user.response')
-        //     ->groupBy('users.name')
-        // ->get();
-
-
-        // dd($userWrong);
-
-        // // DB::table('email_user')->insert([
-        // //         'email_id' =>  $request->randomEmail,
-        // //         'user_id' => $user
-        // //     ]);
-
+        $this->calculateEmailsIHave();
         $users = DB::table('users')
-        ->leftJoin('email_user', 'users.id', '=', 'email_user.user_id')
-        ->leftJoin('emails', 'email_user.email_id', '=', 'emails.id')
         ->get();
-
-
-
             return Inertia::render('Project/views/Leaderboard' ,compact('users'));
 
+
+    }
+
+
+    public function decisions(){
+
+    $user = auth()->user()->id;
+    $correctDecisionCount = DB::table('email_user')
+    ->where('user_id', $user)
+    ->where('response', 1)
+    ->count();
+
+    $wrongDecisionCount = DB::table('email_user')
+    ->where('user_id', $user)
+    ->where('response', 0)
+    ->count();
+
+    DB::table('users')
+        ->where('id', $user)
+        ->update([
+            'correctdecisions' => $correctDecisionCount,
+            'wrongdecisions' => $wrongDecisionCount]);
 
     }
 

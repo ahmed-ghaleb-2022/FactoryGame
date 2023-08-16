@@ -16,16 +16,26 @@ const EmailBrowser = ({
         setShowMoreDetails(!showMoreDetails);
     };
 
-    const sendResponse = (response) => {
-        console.log(response);
+    const sendResponse = (res) => {
+        console.log(res);
+        
+        if (res === value.isSafe) {
+            let response = 1 ;
+            router.post("/game/response", {
+                id: value.email_id,
+                response,
+            });
+        }else{
+            let response = 0 ;
+            router.post("/game/response", {
+                id: value.email_id,
+                response,
+            });
+        }
 
-        router.post("/game/response", {
-            id: value.email_id,
-            response,
-        });
 
         closeWindow();
-        if(value.isSafe === response ){
+        if(value.isSafe === res ){
 
             showFeedBack(true);
         }else{
